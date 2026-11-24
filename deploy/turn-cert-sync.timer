@@ -1,0 +1,10 @@
+# daily cert sync (step 5.4) — LE renews ~every 60 days, a day of lag is fine
+[Unit]
+Description=Daily caddy-to-coturn certificate sync
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,31 @@
+# production entry point (step 5.3): Caddy terminates TLS (Let's Encrypt),
+# serves the built client, and proxies the websocket to the Go server.
+# Rendered by deploy.sh (DOMAIN filled in, plus a redirect block per
+# REDIRECT_HOSTS entry) and installed to /etc/caddy/Caddyfile.
+__DOMAIN__ {
+	# the client connects to wss://<host>/ws in production (App.tsx WS_URL)
+	handle /ws {
+		reverse_proxy 127.0.0.1:3000
+	}
+
+	# everything else is the static client build; unknown paths fall back to
+	# index.html (single-page app)
+	handle {
+		root * /srv/workspace/client/dist
+
+		# cache busting: vite content-hashes everything under /assets, so those
+		# URLs change whenever their bytes do and can be cached forever. The
+		# entry point (index.html, plus every SPA fallback path) must revalidate
+		# on each load or the browser keeps pointing at deleted asset hashes —
+		# that is the "empty cache and hard reload" case. no-cache still allows a
+		# cheap 304 via Caddy's ETag; it is not no-store.
+		@hashed path /assets/*
+		@entry not path /assets/*
+		header @hashed Cache-Control "public, max-age=31536000, immutable"
+		header @entry Cache-Control "no-cache"
+
+		try_files {path} /index.html
+		file_server
+	}
+}
+

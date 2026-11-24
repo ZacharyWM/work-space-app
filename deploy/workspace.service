@@ -1,0 +1,22 @@
+# systemd unit for the ws server (step 5.3); installed to
+# /etc/systemd/system/workspace.service by deploy.sh
+[Unit]
+Description=Blip-A virtual office server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# dedicated no-login system user; the service only reads /srv/workspace
+User=workspace
+Group=workspace
+WorkingDirectory=/srv/workspace/server
+# PORT + CLERK_SECRET_KEY + DATABASE_URL live only on the VPS, never in git
+EnvironmentFile=/etc/workspace.env
+# static Go binary cross-compiled by deploy.sh; reads ../map.json relative to
+# the working directory, same layout as dev
+ExecStart=/srv/workspace/server/workspace-server
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# env files carry clerk keys and db urls — never in git (notes/005)
+.env
+.env.*
+
+# go server build artifact (deploy.sh cross-compile)
+server/workspace-server
+server/server
+
+# typescript incremental build cache
+*.tsbuildinfo

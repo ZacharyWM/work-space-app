@@ -1,0 +1,59 @@
+{
+  "background": "#05070D",
+  "accent": "#3EE08A",
+  "accentOptions": ["#4EE1FF", "#FFB454", "#8A7DFF", "#3EE08A"],
+  "fonts": {
+    "mono": "'IBM Plex Mono', monospace",
+    "sans": "'Space Grotesk', sans-serif"
+  },
+  "canvas": {
+    "star": "#AFC6E8",
+    "floorHull": "#0A0E1A",
+    "floorDeck": "#0D1322",
+    "floorDeckStroke": "rgba(90,120,170,.14)",
+    "floorGrid": "rgba(110,140,190,.06)",
+    "avatarLabelBg": "rgba(6,9,16,.72)",
+    "avatarLabelText": "rgba(220,230,245,.9)",
+    "micOffDot": "#FF5D5D",
+    "micOffDotStroke": "#0A0F1C",
+    "podIdle": "#6E7A96",
+    "decor": {
+      "screen": "#101A30",
+      "panel": "#16233C",
+      "seat": "#1B2A47",
+      "bed": "#17253F",
+      "bedPillow": "rgba(230,240,255,.2)",
+      "cross": "rgba(255,138,138,.6)",
+      "crate": "#2B2519",
+      "crateStroke": "rgba(255,180,84,.28)",
+      "desk": "#10192E",
+      "deskStroke": "rgba(90,120,170,.25)"
+    },
+    "ship": {
+      "wing": "#6B7A96",
+      "hullTop": "#8C9BB8",
+      "hullBottom": "#5E6D8C",
+      "canopy": "rgba(160,230,255,.9)",
+      "nav": "rgba(140,210,255,.9)",
+      "thrustTail": "#78C8FF",
+      "thrustHead": "#8CD7FF",
+      "padStroke": "rgba(120,150,200,.3)",
+      "padLabel": "rgba(160,180,210,.4)",
+      "bayLight": "rgba(255,180,84,.16)",
+      "bayLabel": "rgba(160,180,210,.45)"
+    }
+  },
+  "ui": {
+    "text": "#E8EEF9",
+    "text-dim": "rgba(160,180,210,.5)",
+    "surface-bg": "rgba(10,15,28,.86)",
+    "surface-border": "rgba(120,150,200,.16)",
+    "danger": "#FF8A8A",
+    "dot-on": "#3EE08A",
+    "dot-off": "#FF5D5D",
+    "dot-busy": "#FFB454",
+    "tile-bg": "#0A0F1C",
+    "tile-placeholder-bg": "#0B101D",
+    "card-bg": "#0A0F1C"
+  }
+}

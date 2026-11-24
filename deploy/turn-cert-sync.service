@@ -1,0 +1,9 @@
+# one cert sync run (step 5.4); scheduled by turn-cert-sync.timer,
+# installed by deploy.sh
+[Unit]
+Description=Sync caddy TLS certificate into coturn
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/turn-cert-sync

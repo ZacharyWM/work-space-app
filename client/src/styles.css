@@ -1,0 +1,122 @@
+/* global styles (step 4.3), copied from the prototype's stylesheet: box model,
+   input placeholder, entrance animations, and the hover/focus states that
+   inline styles cannot express. !important beats the inline base styles. */
+* {
+  box-sizing: border-box;
+}
+input::placeholder {
+  color: rgba(160, 180, 210, 0.4);
+}
+
+/* video tile entrance (Tiles.tsx) */
+@keyframes tilein {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* zone toast entrance (Hud.tsx); ends at the inline translateX(-50%) centering */
+@keyframes toastin {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+/* picked-prop popup entrance (App.tsx, notes/017): overshoots so the popup is
+   noticed the moment a prop is clicked; ends at the inline centering */
+@keyframes pickpop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 16px) scale(0.9);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(-50%, -3px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* toolbar mic/cam buttons */
+.hud-media-btn:hover {
+  filter: brightness(1.25);
+}
+/* toolbar zoom buttons */
+.hud-zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+/* toolbar EXIT button */
+.hud-exit-btn:hover {
+  background: rgba(255, 77, 77, 0.22) !important;
+}
+/* meeting view pin control (MeetingView.tsx): hidden until the tile is
+   hovered; the active pin's UNPIN button stays visible */
+.meeting-pin-btn {
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    filter 0.15s;
+}
+.meeting-pin-btn.pinned,
+.meeting-pin-btn:focus-visible,
+div:hover > .meeting-pin-btn {
+  opacity: 1;
+}
+.meeting-pin-btn:hover {
+  filter: brightness(1.4);
+}
+
+/* decor size slider (DecorPanel.tsx): a native range styled to the hull —
+   thin dark track, accent thumb. Both vendor thumb rules are needed */
+.decor-size-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  background: transparent;
+}
+.decor-size-slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.decor-size-slider::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.decor-size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px; /* centers the thumb on the 3px track */
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+.decor-size-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+/* join screen: BOARD SHIP hover + callsign focus ring */
+.join-board-btn:enabled:hover {
+  filter: brightness(1.12);
+}
+.join-callsign:focus {
+  border-color: var(--accent) !important;
+}
